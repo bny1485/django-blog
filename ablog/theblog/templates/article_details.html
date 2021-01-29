@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <h1>Post detail</h1>
+    <hr>
+
+    <ul style="border:1px solid black; margin-top:5px;">
+        <li>{{ post.title }}</a> - {{ post.author.get_full_name }}<br>
+            {{ post.body }}
+        </li>
+        <br>
+    </ul>
+
+    <a href="{% url 'home' %}">back</a>
+</body>
+
+</html>
