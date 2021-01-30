@@ -9,7 +9,7 @@
 <h1>Post detail</h1>
 
 <ul>
-    <li>{{ post.title }}</a> - {{ post.author.get_full_name }}<br>
+    <li>{{ post.title }}</a> - {{ post.author.get_full_name }} - {{ post.post_date }}<br>
         {{ post.body }}
     </li>
     <a href="{% url 'update-post' post.pk %}"><small>(Edit Post)</small></a><br>
