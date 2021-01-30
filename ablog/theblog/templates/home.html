@@ -7,7 +7,8 @@
 {% for post in object_list %}
 <div class="border mt-1">
     <li><a href="{% url 'article-detail' post.pk %}">{{ post.title }}</a> - {{ post.author.get_full_name }}<br>
-        <a href="{% url 'update-post' post.pk %}"><small>(Edit Post)</small></a><br>
+        <a href="{% url 'update-post' post.pk %}"><small>Edit Post</small></a><br>
+        <a href="{% url 'delete-post' post.pk %}"><small>delete Post</small></a><br>
         {{ post.body }}
     </li>
     <br>

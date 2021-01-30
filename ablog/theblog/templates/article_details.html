@@ -13,7 +13,9 @@
         {{ post.body }}
     </li>
     <a href="{% url 'update-post' post.pk %}"><small>(Edit Post)</small></a><br>
+    <a href="{% url 'delete-post' post.pk %}"><small>(delete Post)</small></a><br>
     <br>
+
 
 </ul>
 <a type="button" class="btn btn-secondary" href="{% url 'home' %}">back</a>
