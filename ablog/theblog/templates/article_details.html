@@ -12,7 +12,9 @@
     <li>{{ post.title }}</a> - {{ post.author.get_full_name }}<br>
         {{ post.body }}
     </li>
+    <a href="{% url 'update-post' post.pk %}"><small>(Edit Post)</small></a><br>
     <br>
+
 </ul>
 <a type="button" class="btn btn-secondary" href="{% url 'home' %}">back</a>
 {% endblock content %}
