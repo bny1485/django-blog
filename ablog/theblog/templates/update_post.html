@@ -5,6 +5,7 @@
 
 {% block content %}
 <h1>update Post</h1>
+{% if user.is_authenticated %}
 <br>
 <div class="form-group">
     <form action="" method="POST">
@@ -13,4 +14,9 @@
         <button class="btn btn-secondary">update</button>
     </form>
 </div>
+{% else %}
+<h1>
+    Error 403
+</h1>
+{% endif %}
 {% endblock content %}

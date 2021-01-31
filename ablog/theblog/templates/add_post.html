@@ -4,6 +4,8 @@
 {% block title %}Create a New Blog Post{% endblock title %}
 
 {% block content %}
+
+{% if user.is_authenticated %}
 <h1>add Post</h1>
 <br>
 <div class="form-group">
@@ -13,4 +15,10 @@
         <button class="btn btn-secondary">Post</button>
     </form>
 </div>
+{% else %}
+<h1>
+    Error 403
+</h1>
+{% endif %}
+
 {% endblock content %}
