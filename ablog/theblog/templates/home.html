@@ -11,8 +11,12 @@
             href="{% url 'category' post.category|slugify %}">
             {{ post.category }}</a><br>
         {% if user.is_authenticated %}
+        {% if user.id == post.author.id %}
         <a href="{% url 'update-post' post.pk %}"><small>Edit Post</small></a><br>
         <a href="{% url 'delete-post' post.pk %}"><small>delete Post</small></a><br>
+        {% else %}
+        You are not allowed here!
+        {% endif %}
         {% endif %}
         {{ post.body | slice:":200" }}
     </li>

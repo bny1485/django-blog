@@ -13,8 +13,10 @@
         {{ post.body }}
     </li>
     {% if user.is_authenticated %}
+    {% if user.id == post.author.id %}
     <a href="{% url 'update-post' post.pk %}"><small>(Edit Post)</small></a><br>
     <a href="{% url 'delete-post' post.pk %}"><small>(delete Post)</small></a><br>
+    {% endif %}
     {% endif %}
     <br>
 

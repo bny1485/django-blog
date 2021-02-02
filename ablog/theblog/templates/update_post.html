@@ -6,14 +6,18 @@
 {% block content %}
 <h1>update Post</h1>
 {% if user.is_authenticated %}
-<br>
-<div class="form-group">
-    <form action="" method="POST">
-        {% csrf_token %}
-        {{ form.as_p }}
-        <button class="btn btn-secondary">update</button>
-    </form>
-</div>
+    {% if user.id == post.author.id %}
+    <br>
+    <div class="form-group">
+        <form action="" method="POST">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <button class="btn btn-secondary">update</button>
+        </form>
+    </div>
+    {% else %}
+        You are not allowed here!
+    {% endif %}
 {% else %}
 <h1>
     Error 403
