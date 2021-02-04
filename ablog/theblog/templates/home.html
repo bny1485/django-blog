@@ -18,7 +18,8 @@
         You are not allowed here!
         {% endif %}
         {% endif %}
-        {{ post.body | slice:":200" }}
+        {{ post.snippet }}
+        <!-- {{ post.body | slice:":200" }} -->
     </li>
     <br>
 </div>
