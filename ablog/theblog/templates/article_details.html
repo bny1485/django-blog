@@ -10,6 +10,10 @@
 
 <ul>
     <li>{{ post.title }}</a> - {{ post.author.get_full_name }} - {{ post.post_date }}<br>
+        {% if post.header_image %}
+        <img style="width:400px;" src="{{ post.header_image.url }}" alt="image" />
+        {% endif %}
+        <br><br>
         {{ post.body|safe }}
     </li>
     {% if user.is_authenticated %}
@@ -36,7 +40,7 @@
     <button type="sumbit" name="post_id" value="{{ post.id }}" class="btn btn-primary btn-sm">like</button>
     {% endif %}
     {% else %}
-<small><a href="{% url 'login' %}">login</a> to like</small>
+    <small><a href="{% url 'login' %}">login</a> to like</small>
     {% endif %}
     {{ total_likes }} likes
 </form>
