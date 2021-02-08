@@ -63,6 +63,9 @@
             <div class="card-body">
                 <h5 class="card-title">{{ post.author.first_name }} {{ post.author.last_name }}</h5>
                 <p class="small text-muted">
+
+                    <a href="{% url 'show_profile_page' post.author.profile.id %}">Profile</a><br>
+
                     {% if post.author.profile.website.url %}
                         <a href="{{ post.author.profile.website_url }}">Website</a>,
                     {% endif %}
