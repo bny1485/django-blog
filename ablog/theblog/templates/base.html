@@ -50,10 +50,20 @@
                         </a>
                         <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
                             <li><a class="dropdown-item" href="{% url 'edit_profile' %}">Edit Setting</a></li>
+                            {% if user.profile.id %}
                             <li class="nav-item">
                                 <a class="dropdown-item" href="{% url 'edit_profile_page' user.profile.id %}">Edit Profile Page</a>
                             </li>
+                            {% else %}
+                            <li class="nav-item">
+                                <a class="dropdown-item" href="{% url 'create_profile_page' %}">Create Profile Page</a>
+                            </li>
+                            {% endif %}
+                            {% if user.profile.id %}
                             <li><a class="dropdown-item" href="{% url 'show_profile_page' user.profile.id %}">Show profile page</a></li>
+                            {% else %}
+                            <li><a class="dropdown-item" href="#">Show profile page</a></li>
+                            {% endif %}
                         </ul>
                     </li>
                     <li class="nav-item">
