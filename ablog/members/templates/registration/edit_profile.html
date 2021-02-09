@@ -4,7 +4,8 @@
 {% block title %}Edit Profile{% endblock title %}
 
 {% block content %}
-<h1>edit profile</h1>
+{% if user.id = profile.user.id %}
+<h1>edit Settings</h1>
 <br>
 <br>
 {{ user.profile.bio }}
@@ -16,4 +17,7 @@
         <button class="btn btn-secondary">edit profile</button>
     </form>
 </div>
+{% else %}
+erorr 403
+{% endif %}
 {% endblock content %}
