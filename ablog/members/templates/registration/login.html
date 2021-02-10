@@ -9,8 +9,16 @@
 <div class="form-group">
     <form method="POST">
         {% csrf_token %}
-        {{ form.as_p }}
+        <div class="mb-3">
+            <input type="text" class="form-control" name="username" placeholder="username">
+        </div>
+        <div class="mb-3">
+            <input type="password" class="form-control" name="password" placeholder="password">
+        </div>
         <button class="btn btn-secondary">login</button>
+        <br>
+        <br><div id="emailHelp" class="form-text">Not Registerde? sign up <a href="{% url 'register' %}">here</a></div>
+  </div>
     </form>
 </div>
 {% endblock content %}
