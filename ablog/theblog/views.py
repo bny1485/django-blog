@@ -1,13 +1,11 @@
 from django.shortcuts import render, get_object_or_404
 from django.views.generic import ListView, DetailView, CreateView, UpdateView, DeleteView
-from .models import Post, Category
-from .forms import PostForm, EditForm
+from .models import Post, Category, Comment
+from .forms import PostForm, EditForm, CommentForm
 from django.urls import reverse_lazy, reverse
 from django.http import HttpResponseRedirect
 
 
-# def home(request):
-#     return render(request, 'home.html', {})
 def LikeView(request, pk):
     post = get_object_or_404(Post, id=request.POST.get('post_id'))
     liked = False
@@ -18,6 +16,9 @@ def LikeView(request, pk):
         post.likes.add(request.user)
         liked = True
     return HttpResponseRedirect(reverse('article-detail', args=[str(pk)]))
+
+# def home(request):
+#     return render(request, 'home.html', {})
 
 
 class HomeView(ListView):
@@ -57,7 +58,7 @@ class ArticleDetailView(DetailView):
 
         liked = False
         if stuff.likes.filter(id=self.request.user.id).exists():
-            liked =True
+            liked = True
 
         context['cat_menu'] = cat_menu
         context['total_likes'] = total_likes
@@ -71,6 +72,17 @@ class AddPostView(CreateView):
     form_class = PostForm
     # fields = '__all__'
     # fields = ('title', 'body')
+
+
+class AddCommentView(CreateView):
+    model = Comment
+    template_name = 'add_comment.html'
+    form_class = CommentForm
+    success_url = reverse_lazy('home')
+
+    def form_valid(self, form):
+        form.instance.Post_id = self.kwargs['pk']
+        return super().form_valid(form)
 
 
 class AddCategoryView(CreateView):

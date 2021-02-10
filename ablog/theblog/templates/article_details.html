@@ -45,19 +45,20 @@
     {% endif %}
     {{ total_likes }} likes
 </form>
+
 <br><br>
 
 
 <div class="card mb-3">
     <div class="row g-0">
         {% if post.author.profile.profile_pic %}
-            <div class="col-md-2">
-                <img src="{{ post.author.profile.profile_pic.url }}" alt="profile picture">
-            </div>
+        <div class="col-md-2">
+            <img src="{{ post.author.profile.profile_pic.url }}" alt="profile picture">
+        </div>
         {% else %}
-            <div class="col-md-2">
-                <img src="{% static 'static/theblog/images/profile.png' %}" alt="Else profile picture">
-            </div>
+        <div class="col-md-2">
+            <img src="{% static 'static/theblog/images/profile.png' %}" alt="Else profile picture">
+        </div>
         {% endif %}
         <div class="col-md-10">
             <div class="card-body">
@@ -67,16 +68,16 @@
                     <a href="{% url 'show_profile_page' post.author.profile.id %}">Profile</a><br>
 
                     {% if post.author.profile.website.url %}
-                        <a href="{{ post.author.profile.website_url }}">Website</a>,
+                    <a href="{{ post.author.profile.website_url }}">Website</a>,
                     {% endif %}
                     {% if post.author.profile.telegram_url %}
-                        <a href="{{ post.author.profile.telegram_url }}">Telegram</a>,
+                    <a href="{{ post.author.profile.telegram_url }}">Telegram</a>,
                     {% endif %}
                     {% if post.author.profile.twitter_url %}
-                        <a href="{{ post.author.profile.twitter_url }}">Twitter</a>
+                    <a href="{{ post.author.profile.twitter_url }}">Twitter</a>
                     {% endif %}
                     {% if post.author.profile.instagram_url %}
-                        <a href="{{ post.author.profile.instagram_url }}">Instagram</a>
+                    <a href="{{ post.author.profile.instagram_url }}">Instagram</a>
                     {% endif %}
                 </p>
                 <p class="card-text">{{ post.author.profile.bio }}</p>
@@ -86,5 +87,21 @@
     </div>
 </div>
 
-
+<hr>
+<h1>comments ...</h1>
+{% if not post.comments.all %}
+    no comment yet <a href="{% url 'add_comment' post.pk %}">add one</>
+{% else %}
+    <a href="{% url 'add_comment' post.pk %}">Add Comment</a><br>
+    {% for comment in post.comments.all %}
+        <strong>{{ comment.name }} - {{ comment.date_added }}</strong>
+        <br>
+        {{ comment.body }}
+        <br>
+        <br>
+    {% endfor %}
+    <a href="{% url 'add_comment' post.pk %}">Add Comment</a>
+{% endif %}
+<hr>
+<br><br>
 {% endblock content %}
